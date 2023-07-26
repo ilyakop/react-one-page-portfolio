@@ -2,36 +2,70 @@ import React from "react";
 import FullScreenSection from "./FullScreenSection";
 import { Box, Heading } from "@chakra-ui/react";
 import Card from "./Card";
-import CardWrapper from "./CardWrapper";
+
+const projectsHighlighted = [
+  {
+    title: "Oxygen Website Builder",
+    url: "https://oxygenbuilder.com",
+    description:
+      "Lead developer and Architect at famous Oxygen Website Builder App used by tens of thousands designers and studios worldwide. Oxygen is a versatile and user-friendly tool that empowers users to design and customize their WordPress websites with ease.",
+    getImageSrc: () => require("../images/oxygenbuilder.png"),
+    tags: ['angularjs','php','wordpress','rest api', 'ui/ux']
+  },
+  {
+    title: "Ayuda Services Marketplace",
+    url: "https://ayuda.shop",
+    description:
+      "Ayuda is a Marketplace for professionals and clients to find and provide services in Latin America market. Provide an Airbnb like experience in finding help with your home tasks.",
+    getImageSrc: () => require("../images/ayuda.png"),
+    tags: ['react','nextjs','tailwindcss','typescript']
+  }
+]
 
 const projects = [
   {
-    title: "React Space",
+    title: "Codecademy Translation",
+    url: "https://codecademy.com",
     description:
-      "Handy tool belt to create amazing AR components in a React app, with redux integration via middleware️",
-    getImageSrc: () => require("../images/photo1.jpg"),
+      "It was fun and challenging translating JavaScript lessons from English to Russian for a Codecademy",
+    getImageSrc: () => require("../images/codecademy.png"),
+    tags: ['javascript','english to russian']
   },
   {
-    title: "React Infinite Scroll",
+    title: "Car Rentals Service",
+    url: "https://car-rentals-cancun.com",
     description:
-      "A scrollable bottom sheet with virtualisation support, native animations at 60 FPS and fully implemented in JS land 🔥️",
-    getImageSrc: () => require("../images/photo2.jpg"),
+      "Booking service for renting cars and transfers in Cancun and Riviera Maya.",
+    getImageSrc: () => require("../images/cheap-car-rentals.png"),
+    tags: ['react','nextjs','tailwindcss','typescript']
   },
   {
-    title: "Photo Gallery",
+    title: "KnowMyRankings",
     description:
-      "A One-stop shop for photographers to share and monetize their photos, allowing them to have a second source of income",
-    getImageSrc: () => require("../images/photo3.jpg"),
+      "Minimalist and innovative Google rank tracking service.",
+    getImageSrc: () => require("../images/knowmyrankings.png"),
+    tags: ['google api','php','wordpress','javascript']
   },
-  {
-    title: "Event planner",
-    description:
-      "A mobile application for leisure seekers to discover unique events and activities in their city with a few taps",
-    getImageSrc: () => require("../images/photo4.jpg"),
-  },
+  
 ];
 
 const ProjectsSection = () => {
+
+  const cardsLoop = (projects) => {
+    return (
+      projects.map((project) => (
+          <Card
+            key={project.title}
+            title={project.title}
+            tags={project.tags}
+            description={project.description}
+            imageSrc={project.getImageSrc()}
+            url={project.url}
+          />
+        ))
+    )
+  }
+  
   return (
     <FullScreenSection
       isDarkBackground
@@ -47,14 +81,14 @@ const ProjectsSection = () => {
         gridTemplateColumns={{ base: 'repeat(1,minmax(0,1fr))', md: 'repeat(2,minmax(0,1fr))' }}
         gridGap={8}
       >
-        {projects.map((project) => (
-          <Card
-            key={project.title}
-            title={project.title}
-            description={project.description}
-            imageSrc={project.getImageSrc()}
-          />
-        ))}
+          {cardsLoop(projectsHighlighted)}
+      </Box>
+      <Box
+        display="grid"
+        gridTemplateColumns={{ base: 'repeat(1,minmax(0,1fr))', md: 'repeat(3,minmax(0,1fr))' }}
+        gridGap={8}
+      >
+        {cardsLoop(projects)}
       </Box>
     </FullScreenSection>
   );

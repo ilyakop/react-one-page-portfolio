@@ -5,7 +5,6 @@ import {
   faGithub,
   faInstagram,
   faLinkedin,
-  faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
 import { Box, HStack, Stack } from "@chakra-ui/react";
 
