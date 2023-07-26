@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
   faGithub,
+  faInstagram,
   faLinkedin,
   faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
@@ -22,8 +23,8 @@ const socials = [
     url: "https://www.linkedin.com/in/ilyakop",
   },
   {
-    icon: faStackOverflow,
-    url: "https://stackoverflow.com",
+    icon: faInstagram,
+    url: "https://www.instagram.com/illia.online/",
   },
 ];
 
@@ -92,8 +93,8 @@ const Header = () => {
           </nav>
           <nav>
             <HStack spacing={18}>
-              <a onClick={handleClick('resume')} href="/#resume">Resume</a>
               <a onClick={handleClick('projects')} href="/#projects">Projects</a>
+              <a onClick={handleClick('resume')} href="/#resume">Resume</a>
               <a onClick={handleClick('contactme')} href="/#contact-me">Contact Me</a>
             </HStack>
           </nav>
