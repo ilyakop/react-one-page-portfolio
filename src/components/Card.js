@@ -4,23 +4,34 @@ import React from "react";
 import CardWrapper from "./CardWrapper";
 import { faExternalLink } from "@fortawesome/free-solid-svg-icons";
 
-const Card = ({ title, description, imageSrc, tags=[], url="" }) => {
+const Card = ({ title, description, imageSrc, tags=[], url="", size="big" }) => {
+  
+  let imageHeight=300,
+      headingSize='2xl',
+      cardPadding='8'
+
+  if (size=='small') {
+    imageHeight=200
+    headingSize='xl'
+    cardPadding='4'
+  }
   return (
     <CardWrapper>
       <VStack>
         <Image
           filter={'grayscale(80%)'}
-          h={300}
+          h={imageHeight}
           w={'100%'}
           objectFit={'cover'}
+          objectPosition={'left top'}
           src={imageSrc}>
         </Image>
         <VStack
           w={'100%'}
           align={'left'}
-          padding="8">
+          padding={cardPadding}>
           <Heading
-            fontSize={'2xl'}>
+            fontSize={headingSize}>
             {title}
           </Heading>
           {(url && 

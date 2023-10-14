@@ -5,24 +5,40 @@ import Card from "./Card";
 
 const projectsHighlighted = [
   {
-    title: "Oxygen Website Builder",
+    title: "Website Builder Application",
     url: "https://oxygenbuilder.com",
     description:
-      "Lead developer and Architect at famous Oxygen Website Builder App used by tens of thousands designers and studios worldwide. Oxygen is a versatile and user-friendly tool that empowers users to design and customize their WordPress websites with ease.",
+      "I am a Lead developer and Architect at famous Oxygen Website Builder App used by tens of thousands designers and studios worldwide. Oxygen is user-friendly tool for customizing WordPress websites with ease.",
     getImageSrc: () => require("../images/oxygenbuilder.png"),
     tags: ['angularjs','php','wordpress','rest api', 'ui/ux']
   },
   {
-    title: "Ayuda Services Marketplace",
+    title: "Services Marketplace",
     url: "https://ayuda.shop",
     description:
       "Ayuda is a Marketplace for professionals and clients to find and provide services in Latin America market. Provide an Airbnb like experience in finding help with your home tasks.",
     getImageSrc: () => require("../images/ayuda.png"),
     tags: ['react','nextjs','tailwindcss','typescript']
+  },
+  {
+    title: "New York Real Estate Portal",
+    url: "https://ipg-nyc-client.vercel.app/",
+    description:
+      "Turned static website into Content Managment System using Sanity Studio for Ideal Properties Group - a trusted listing pipeline for unique property finds in New York.",
+    getImageSrc: () => require("../images/ipgnyc.png"),
+    tags: ['vue','nuxtjs','typescript','sanity']
   }
 ]
 
 const projects = [
+  {
+    title: "Headless CMS",
+    url: "https://headless-wordpress-nextjs-dusky.vercel.app/",
+    description:
+      "Headless WordPress to reuse across multiple platforms through an API, enhancing versatility and scalability",
+    getImageSrc: () => require("../images/headless-wordpress-cms.png"),
+    tags: ['headlesscms','nextjs','vercel','graphql','wordpress']
+  },
   {
     title: "Codecademy Translation",
     url: "https://codecademy.com",
@@ -40,7 +56,7 @@ const projects = [
     tags: ['react','nextjs','tailwindcss','typescript']
   },
   {
-    title: "KnowMyRankings",
+    title: "Google Ranking Service",
     description:
       "Minimalist and innovative Google rank tracking service.",
     getImageSrc: () => require("../images/knowmyrankings.png"),
@@ -51,10 +67,11 @@ const projects = [
 
 const ProjectsSection = () => {
 
-  const cardsLoop = (projects) => {
+  const cardsLoop = (projects, size) => {
     return (
       projects.map((project) => (
           <Card
+            size={size}
             key={project.title}
             title={project.title}
             tags={project.tags}
@@ -78,17 +95,17 @@ const ProjectsSection = () => {
       </Heading>
       <Box
         display="grid"
-        gridTemplateColumns={{ base: 'repeat(1,minmax(0,1fr))', md: 'repeat(2,minmax(0,1fr))' }}
+        gridTemplateColumns={{ base: 'repeat(1,minmax(0,1fr))', md: 'repeat(3,minmax(0,1fr))' }}
         gridGap={8}
       >
           {cardsLoop(projectsHighlighted)}
       </Box>
       <Box
         display="grid"
-        gridTemplateColumns={{ base: 'repeat(1,minmax(0,1fr))', md: 'repeat(3,minmax(0,1fr))' }}
-        gridGap={8}
+        gridTemplateColumns={{ base: 'repeat(1,minmax(0,1fr))', md: 'repeat(4,minmax(0,1fr))' }}
+        gridGap={6}
       >
-        {cardsLoop(projects)}
+        {cardsLoop(projects, 'small')}
       </Box>
     </FullScreenSection>
   );
