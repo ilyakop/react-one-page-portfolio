@@ -5,6 +5,7 @@ import {
   faGithub,
   faInstagram,
   faLinkedin,
+  faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import { Box, HStack, Stack } from "@chakra-ui/react";
 
@@ -24,6 +25,10 @@ const socials = [
   {
     icon: faInstagram,
     url: "https://www.instagram.com/illia.online/",
+  },
+  {
+    icon: faYoutube,
+    url: "https://www.youtube.com/@illia.online",
   },
 ];
 
