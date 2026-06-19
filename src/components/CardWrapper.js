@@ -4,12 +4,16 @@ const CardWrapper = (props) => {
   return (
     <Box
       {...props}
-      overflow={'hidden'}
-      bg="white"
-      color="#333"
-      boxShadow={'2xl'}
-      borderRadius="xl">
-        {props.children}
+      overflow="hidden"
+      bg="brand.surface"
+      color="brand.body"
+      border="1px solid"
+      borderColor="brand.border"
+      borderRadius="lg"
+      transition="background-color 0.2s ease-out, border-color 0.2s ease-out"
+      _hover={{ borderColor: "brand.accent", bg: "brand.surfaceHover" }}
+    >
+      {props.children}
     </Box>
   );
 };

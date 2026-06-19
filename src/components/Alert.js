@@ -23,8 +23,14 @@ function Alert() {
       onClose={onClose}
     >
       <AlertDialogOverlay>
-        <AlertDialogContent py={4} backgroundColor={isSuccess ? '#81C784' : '#FF8A65'}>
-          <AlertDialogHeader fontSize="lg" fontWeight="bold">
+        <AlertDialogContent
+          py={4}
+          bg="brand.surface"
+          color="brand.body"
+          border="1px solid"
+          borderColor={isSuccess ? "brand.accent" : "brand.accent2"}
+        >
+          <AlertDialogHeader fontSize="lg" fontWeight="bold" fontFamily="heading">
             {isSuccess ? 'All good!' : 'Oops!'}
           </AlertDialogHeader>
           <AlertDialogBody>{message}</AlertDialogBody>

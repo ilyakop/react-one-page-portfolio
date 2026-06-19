@@ -1,111 +1,197 @@
 import React from "react";
 import FullScreenSection from "./FullScreenSection";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 import Card from "./Card";
+import PluginCard from "./PluginCard";
+import useScrollFadeIn from "../hooks/useScrollFadeIn";
 
-const projectsHighlighted = [
+const workFeatured = [
   {
-    title: "Website Builder Application",
+    title: "Oxygen Builder",
     url: "https://oxygenbuilder.com",
     description:
-      "I am a Lead developer and Architect at famous Oxygen Website Builder App used by tens of thousands designers and studios worldwide. Oxygen is user-friendly tool for customizing WordPress websites with ease.",
+      "Led architecture and development of a WordPress website builder used by 30,000+ designers and agencies worldwide. Engineered to be dramatically leaner and faster than Elementor and Divi — consistently 95%+ on PageSpeed, YSlow, and GTmetrix.",
     getImageSrc: () => require("../images/oxygenbuilder.png"),
-    tags: ['angularjs','php','wordpress','rest api', 'ui/ux']
+    tags: ["PHP", "WordPress", "JavaScript", "React", "REST API", "UI/UX"],
   },
   {
-    title: "Services Marketplace",
+    title: "Ayuda — Services Marketplace",
     url: "https://ayuda.shop",
     description:
-      "Ayuda is a Marketplace for professionals and clients to find and provide services in Latin America market. Provide an Airbnb like experience in finding help with your home tasks.",
+      "Built a marketplace connecting professionals with clients across Latin America — Airbnb-style UX for home and personal services.",
     getImageSrc: () => require("../images/ayuda.png"),
-    tags: ['react','nextjs','tailwindcss','typescript']
+    tags: ["React", "Next.js", "TypeScript", "TailwindCSS"],
   },
   {
     title: "New York Real Estate Portal",
-    url: "https://ipg-nyc-client.vercel.app/",
+    url: "https://ipg-nyc-client.vercel.app",
     description:
-      "Turned static website into Content Managment System using Sanity Studio for Ideal Properties Group - a trusted listing pipeline for unique property finds in New York.",
+      "Transformed a static property website into a fully content-managed listing platform for a New York property group.",
     getImageSrc: () => require("../images/ipgnyc.png"),
-    tags: ['vue','nuxtjs','typescript','sanity']
-  }
-]
-
-const projects = [
-  {
-    title: "Headless CMS",
-    url: "https://headless-wordpress-nextjs-dusky.vercel.app/",
-    description:
-      "Headless WordPress to reuse across multiple platforms through an API, enhancing versatility and scalability",
-    getImageSrc: () => require("../images/headless-wordpress-cms.png"),
-    tags: ['headlesscms','nextjs','vercel','graphql','wordpress']
+    tags: ["Vue", "Nuxt.js", "TypeScript", "Sanity CMS"],
   },
+];
+
+const workSecondary = [
   {
-    title: "Codecademy Translation",
-    url: "https://codecademy.com",
+    title: "Headless WordPress CMS",
+    url: "https://headless-wordpress-nextjs-dusky.vercel.app",
     description:
-      "It was fun and challenging translating JavaScript lessons from English to Russian for a Codecademy",
-    getImageSrc: () => require("../images/codecademy.png"),
-    tags: ['javascript','english to russian']
+      "Architected a headless WordPress setup fully decoupled from the frontend — content consumable via API across multiple platforms.",
+    getImageSrc: () => require("../images/headless-wordpress-cms.png"),
+    tags: ["WordPress", "Next.js", "GraphQL", "Vercel"],
   },
   {
     title: "Car Rentals Service",
     url: "https://car-rentals-cancun.com",
     description:
-      "Booking service for renting cars and transfers in Cancun and Riviera Maya.",
+      "Booking and transfer service for car rentals in Cancun and Riviera Maya — built for a high-intent conversion flow with a clean, fast UX.",
     getImageSrc: () => require("../images/cheap-car-rentals.png"),
-    tags: ['react','nextjs','tailwindcss','typescript']
+    tags: ["React", "Next.js", "TypeScript", "TailwindCSS"],
+  },
+  {
+    title: "Codecademy Translation",
+    url: "https://codecademy.com",
+    description:
+      "Translated JavaScript lessons from English to Russian for Codecademy, an online platform teaching programming to millions of learners.",
+    getImageSrc: () => require("../images/codecademy.png"),
+    tags: ["JavaScript", "Technical Translation"],
   },
   {
     title: "Google Ranking Service",
     description:
-      "Minimalist and innovative Google rank tracking service.",
+      "Minimalist Google rank-tracking service for monitoring keyword positions across search results.",
     getImageSrc: () => require("../images/knowmyrankings.png"),
-    tags: ['google api','php','wordpress','javascript']
+    tags: ["PHP", "WordPress", "Google API", "JavaScript"],
   },
-  
+];
+
+const pluginRows = [
+  [
+    {
+      title: "Smart Grid Gallery",
+      platform: "CodeCanyon",
+      description:
+        "Responsive, Gutenberg-optimized WordPress gallery plugin — clean grid layouts with lightbox support.",
+      primaryStat: "2,493 sales",
+      secondaryStat: "81 ratings",
+      rating: "4.63",
+      tags: ["PHP", "WordPress", "JavaScript", "Gutenberg"],
+      url: "https://codecanyon.net/item/smart-grid-gallery-responsive-wordpress-gallery-plugin/8365014",
+    },
+    {
+      title: "Smart Product Viewer — 360° Animation",
+      platform: "CodeCanyon",
+      description:
+        "WooCommerce plugin that lets shoppers spin products through a full 360° interactive view, replacing static product images.",
+      primaryStat: "2,382 sales",
+      secondaryStat: "66 ratings",
+      rating: "4.67",
+      tags: ["PHP", "WordPress", "WooCommerce", "JavaScript"],
+      url: "https://codecanyon.net/item/smart-product-viewer-360-animation-plugin/6277697",
+    },
+  ],
+  [
+    {
+      title: "Smart Before After Viewer",
+      platform: "CodeCanyon",
+      description:
+        "Image comparison plugin with a drag-to-reveal slider — used by photographers, agencies, and renovation companies.",
+      primaryStat: "1,994 sales",
+      secondaryStat: "61 ratings",
+      rating: "4.6",
+      tags: ["PHP", "WordPress", "JavaScript"],
+      url: "https://codecanyon.net/item/smart-before-after-viewer/7672815",
+    },
+    {
+      title: "Simple Like Page",
+      platform: "WordPress.org",
+      description:
+        "Privacy-first Facebook Page embed plugin that delays script loading until user interaction — protects Core Web Vitals.",
+      primaryStat: "10,000+ active installs",
+      secondaryStat: null,
+      rating: "4.3",
+      tags: ["PHP", "WordPress", "Gutenberg", "Performance", "Privacy"],
+      url: "https://wordpress.org/plugins/simple-facebook-plugin/",
+    },
+  ],
 ];
 
 const ProjectsSection = () => {
+  const { ref, style } = useScrollFadeIn();
 
-  const cardsLoop = (projects, size) => {
-    return (
-      projects.map((project) => (
-          <Card
-            size={size}
-            key={project.title}
-            title={project.title}
-            tags={project.tags}
-            description={project.description}
-            imageSrc={project.getImageSrc()}
-            url={project.url}
-          />
-        ))
-    )
-  }
-  
   return (
-    <FullScreenSection
-      isDarkBackground
-      p={8}
-      alignItems="flex-start"
-      spacing={8}
-    >
-      <Heading as="h1" id="projects-section" pt={8}>
-        Featured Projects
+    <FullScreenSection id="projects-section" alignItems="flex-start" p={8}>
+      <Box ref={ref} style={style} w="100%" display="flex" flexDirection="column" gap={10}>
+      <Heading as="h2" fontFamily="heading" fontSize={{ base: "3xl", md: "4xl" }} pt={8}>
+        Projects
       </Heading>
-      <Box
-        display="grid"
-        gridTemplateColumns={{ base: 'repeat(1,minmax(0,1fr))', md: 'repeat(3,minmax(0,1fr))' }}
-        gridGap={8}
-      >
-          {cardsLoop(projectsHighlighted)}
+
+      <Box>
+        <Heading as="h3" fontFamily="heading" fontSize="xl" pb={4} color="brand.muted">
+          Work
+        </Heading>
+        <Box
+          display="grid"
+          gridTemplateColumns={{ base: "repeat(1,minmax(0,1fr))", md: "repeat(3,minmax(0,1fr))" }}
+          gridGap={8}
+          mb={8}
+        >
+          {workFeatured.map((project) => (
+            <Card
+              key={project.title}
+              title={project.title}
+              tags={project.tags}
+              description={project.description}
+              imageSrc={project.getImageSrc()}
+              url={project.url}
+            />
+          ))}
+        </Box>
+        <Box
+          display="grid"
+          gridTemplateColumns={{ base: "repeat(1,minmax(0,1fr))", md: "repeat(4,minmax(0,1fr))" }}
+          gridGap={6}
+        >
+          {workSecondary.map((project) => (
+            <Card
+              key={project.title}
+              size="small"
+              title={project.title}
+              tags={project.tags}
+              description={project.description}
+              imageSrc={project.getImageSrc()}
+              url={project.url}
+            />
+          ))}
+        </Box>
       </Box>
-      <Box
-        display="grid"
-        gridTemplateColumns={{ base: 'repeat(1,minmax(0,1fr))', md: 'repeat(4,minmax(0,1fr))' }}
-        gridGap={6}
-      >
-        {cardsLoop(projects, 'small')}
+
+      <Box>
+        <Heading as="h3" fontFamily="heading" fontSize="xl" pb={4} color="brand.muted">
+          Plugins
+        </Heading>
+        <Text color="brand.muted" fontSize="sm" pb={4} maxW="640px">
+          Independent WordPress products designed and built by Illia Kopturov.
+        </Text>
+        <Box display="flex" flexDirection="column" gap={8}>
+          {pluginRows.map((row, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <Box borderTop="1px solid" borderColor="brand.border" />}
+              <Box
+                display="grid"
+                gridTemplateColumns={{ base: "repeat(1,minmax(0,1fr))", md: "repeat(2,minmax(0,1fr))" }}
+                gridGap={6}
+                alignItems="stretch"
+              >
+                {row.map((plugin) => (
+                  <PluginCard key={plugin.title} {...plugin} />
+                ))}
+              </Box>
+            </React.Fragment>
+          ))}
+        </Box>
+      </Box>
       </Box>
     </FullScreenSection>
   );
